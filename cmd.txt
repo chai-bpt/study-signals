@@ -1,0 +1,3 @@
+kill -l
+stty -a
+man 2 signal
