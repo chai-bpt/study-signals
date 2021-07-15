@@ -1,0 +1,35 @@
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./a.out 
+
+	my pid = 4820
+	looping
+Terminated
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./a.out 
+
+	my pid = 4822
+	looping
+	looping
+	looping
+Killed
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./a.out 
+
+	my pid = 4823
+	looping
+	looping
+^\Quit (core dumped)
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./a.out 
+
+	my pid = 4827
+	looping
+	looping
+	looping
+^C
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./a.out 
+
+	my pid = 4840
+	looping
+	looping
+^Z
+[1]+  Stopped                 ./a.out
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
+
+

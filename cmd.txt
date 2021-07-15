@@ -1,3 +1,5 @@
 kill -l
 stty -a
 man 2 signal
+pkill <PROCESS_NAME>
+kill -9 <PID>
