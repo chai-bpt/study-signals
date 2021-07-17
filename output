@@ -1,20 +1,23 @@
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
-	my pid = 3716
-	looping
-	looping
-^C	looping
+
+	user handler::signal_handler = 0x55ecbfb871a9
+
+	previous_handler = (nil)
+
+	previous_handler = 0x55ecbfb871a9
+
+	previous_handler = 0x1
+
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
+
+	user handler::signal_handler = 0x5602cf2931a9
+
+	previous_handler = (nil)
+^C
 	signal handler::signal = 2
-	looping
-	looping
-	looping
-^C	looping
-	signal handler::signal = 2
-	looping
-	looping
-	looping
-^C	looping
-	signal handler::signal = 2
-	looping
-	looping
-^\Quit (core dumped)
+	previous_handler = 0x5602cf2931a9
+^C
+	previous_handler = 0x1
+^C
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
+
