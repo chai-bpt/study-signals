@@ -15,6 +15,7 @@ int main(int argvc, char* argv[])
 	struct sigaction act = {0};
 
 	act.sa_handler = signal_handler;
+	act.sa_flags = SA_NODEFER;
 
 	sigaction(SIGINT, &act, NULL);
 
