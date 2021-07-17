@@ -1,6 +1,4 @@
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ vim test.c 
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ gcc test.c -o test
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
 	signal handler registered
@@ -9,7 +7,20 @@ chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test
 
 	signal handler::exit
 	
-	check default handler registered due to flag
+	buf = NIL
+
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ vim test.c 
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ gcc test.c -o test
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
+
+	signal handler registered
 ^C
+	signal handler::signal = 2
+
+	signal handler::exit
+	
+	buf = abdcefg
+
+
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
 

@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 
 void signal_handler(int signal)
 {
@@ -13,19 +17,21 @@ void signal_handler(int signal)
 int main(int argvc, char* argv[])
 {
 	struct sigaction act = {0};
+	int fd = 0;
+	char buf[1024] = "NIL";
 
 	act.sa_handler = signal_handler;
-	act.sa_flags = SA_RESETHAND;
-
+	act.sa_flags = SA_RESTART;
+	
+	fd = open("./NamedPipeFile", O_RDWR);
+	
 	sigaction(SIGINT, &act, NULL);
 
 	printf("\n\tsignal handler registered\n");
 
-	sleep(10);
+	read(fd, buf, 1024);
 
-	printf("\n\tcheck default handler registered due to flag\n");
-
-	sleep(10);
+	printf("\n\tbuf = %s\n",buf);
 
 	printf("\n");
 }
