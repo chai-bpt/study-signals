@@ -6,32 +6,34 @@
 #include <fcntl.h>
 
 
-void signal_handler(int signal)
+void signal_handler_sigint(int signal)
 {
-	printf("\n\tsignal handler::signal = %d\n",signal);
-	sleep(2);
-	printf("\n\tsignal handler::exit\n\t");
+	printf("\n\tsignal handler SIGINT::signal = %d\n",signal);
+	sleep(1);
+	printf("\n\tsignal handler SIGINT::exit\n\t");
 	return;
 }
 
+void signal_handler_sigquit(int signal)
+{
+        printf("\n\tsignal handler SIGQUIT::signal = %d\n",signal);
+        sleep(1);
+        printf("\n\tsignal handler SIGQUIT::exit\n\t");
+        return;
+}
 int main(int argvc, char* argv[])
 {
-	struct sigaction act = {0};
-	int fd = 0;
-	char buf[1024] = "NIL";
-
-	act.sa_handler = signal_handler;
-	act.sa_flags = SA_RESTART;
+	struct sigaction act_int, act_quit;
 	
-	fd = open("./NamedPipeFile", O_RDWR);
+	act_int.sa_handler = signal_handler_sigint;	
+	act_quit.sa_handler = signal_handler_sigquit;
 	
-	sigaction(SIGINT, &act, NULL);
+	sigaction(SIGINT, &act_int, NULL);
+	sigaction(SIGQUIT,&act_quit, NULL);
 
 	printf("\n\tsignal handler registered\n");
 
-	read(fd, buf, 1024);
-
-	printf("\n\tbuf = %s\n",buf);
+	sleep(10);
 
 	printf("\n");
 }

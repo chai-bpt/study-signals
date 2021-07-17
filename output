@@ -1,26 +1,26 @@
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ gcc test.c -o test
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
 	signal handler registered
 ^C
-	signal handler::signal = 2
+	signal handler SIGINT::signal = 2
+^\
+	signal handler SIGQUIT::signal = 3
 
-	signal handler::exit
+	signal handler SIGQUIT::exit
 	
-	buf = NIL
-
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ vim test.c 
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ gcc test.c -o test
+	signal handler SIGINT::exit
+	
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
 	signal handler registered
+^\
+	signal handler SIGQUIT::signal = 3
 ^C
-	signal handler::signal = 2
+	signal handler SIGINT::signal = 2
 
-	signal handler::exit
+	signal handler SIGINT::exit
 	
-	buf = abdcefg
-
-
+	signal handler SIGQUIT::exit
+	
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
 
