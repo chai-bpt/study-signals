@@ -3,12 +3,8 @@ chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test
 	signal handler registered
 ^C
 	signal handler::signal = 2
-^C^C^C^C^C^C
-	signal handler::exit
-	
-	signal handler::signal = 2
 
 	signal handler::exit
 	
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ls
 

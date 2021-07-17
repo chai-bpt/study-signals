@@ -3,3 +3,4 @@ stty -a
 man 2 signal
 pkill <PROCESS_NAME>
 kill -9 <PID>
+man 2 sigaction
