@@ -1,25 +1,26 @@
+chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ gcc test.c -o test
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
 	signal handler registered
-^C
-	signal handler SIGINT::signal = 2
 ^\
 	signal handler SIGQUIT::signal = 3
+^C
+	signal handler SIGINT::signal = 2
 
+	signal handler SIGINT::exit
+	
 	signal handler SIGQUIT::exit
 	
-	signal handler SIGINT::exit
-	
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
 	signal handler registered
-^\
-	signal handler SIGQUIT::signal = 3
 ^C
 	signal handler SIGINT::signal = 2
-
+^\
 	signal handler SIGINT::exit
 	
+	signal handler SIGQUIT::signal = 3
+
 	signal handler SIGQUIT::exit
 	
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
