@@ -1,23 +1,14 @@
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
-	user handler::signal_handler = 0x55ecbfb871a9
-
-	previous_handler = (nil)
-
-	previous_handler = 0x55ecbfb871a9
-
-	previous_handler = 0x1
-
-chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
-
-	user handler::signal_handler = 0x5602cf2931a9
-
-	previous_handler = (nil)
+	signal handler registered
 ^C
 	signal handler::signal = 2
-	previous_handler = 0x5602cf2931a9
-^C
-	previous_handler = 0x1
-^C
+^C^C^C^C^C^C
+	signal handler::exit
+	
+	signal handler::signal = 2
+
+	signal handler::exit
+	
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
 
