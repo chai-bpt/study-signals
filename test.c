@@ -23,7 +23,7 @@ void signal_handler_sigquit(int signal)
 }
 int main(int argvc, char* argv[])
 {
-	struct sigaction act_int, act_quit;
+	struct sigaction act_int, act_quit, act_int_current;
 	sigset_t set_int, set_quit;
 
 	memset(&act_int, 0, sizeof(act_int));
@@ -45,6 +45,18 @@ int main(int argvc, char* argv[])
 	printf("\n\tsignal handler registered\n");
 
 	sleep(10);
+
+	memset(&act_int_current, 0 , sizeof(act_int_current));
+	sigaction(SIGINT, NULL, &act_int_current);
+
+	set_int = act_int_current.sa_mask;
+
+	if(sigismember(&set_int, SIGQUIT))
+		printf("\n\tSIGQUIT is blocked\n");
+
+	if(sigismember(&set_int, SIGTERM))
+		printf("\n\tSIGTERM is blocked\n");
+
 
 	printf("\n");
 }
