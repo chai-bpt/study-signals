@@ -18,6 +18,7 @@ int main(int argvc, char* argv[])
 {
 	struct sigaction act_int;
 	sigset_t set;
+	int i = 0;
 
 	memset(&act_int, 0, sizeof(act_int));
 	act_int.sa_handler = signal_handler_sigint;
@@ -31,7 +32,30 @@ int main(int argvc, char* argv[])
 	printf("\n\tBlocking SIGINT");
         sigprocmask(SIG_BLOCK, &set, NULL);
         printf("\n\tSIGINT blocked\n");
+
+	sigpending(&set);
+	for(i = 1; i < 65; i++)
+	{
+		if(sigismember(&set, i))
+		{
+			printf("\n\t pending signal no = %d\n",i);
+		}
+	}
+
+
+	printf("\n\twating for signal\n");
 	sleep(10);
+
+
+	sigpending(&set);
+        for(i = 1; i < 65; i++)
+        {
+                if(sigismember(&set, i))
+                {
+                        printf("\n\t pending signal no = %d\n",i);
+                }
+        }
+
 
 	sigemptyset(&set);
         sigaddset(&set, SIGINT);

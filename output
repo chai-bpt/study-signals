@@ -10,7 +10,11 @@ chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test
 	
 	Blocking SIGINT
 	SIGINT blocked
+
+	wating for signal
 ^C
+	 pending signal no = 2
+
 	Unblocking SIGINT
 	signal handler SIGINT::signal = 2
 
