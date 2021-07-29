@@ -20,7 +20,10 @@ int main(int argvc, char* argv[])
 	sigset_t set;
 	int i = 0;
 	siginfo_t info;
+	struct timespec timeout;
+	int ret = 0;
 
+	memset(&timeout, 0 , sizeof(timeout));
 	memset(&act, 0, sizeof(act));
 	memset(&info, 0, sizeof(info));
 
@@ -52,12 +55,32 @@ int main(int argvc, char* argv[])
 
         sigemptyset(&set);
         sigaddset(&set, SIGALRM);
-	for(i = 0; i < 3; i++)
-	{ 
-		alarm(3);
-		sigwaitinfo(&set, &info);
-		printf("\n\treceived signal %d\n", info.si_signo);
-	}
+	alarm(3);
+	sigwaitinfo(&set, &info);
+	printf("\n\treceived signal %d\n", info.si_signo);
+	
+        sigemptyset(&set);
+        sigaddset(&set, SIGALRM);
+	timeout.tv_sec = 2;
+	timeout.tv_nsec =30;
+        alarm(3);
+        ret = sigtimedwait(&set, &info,&timeout); 
+	if(ret > 0)
+        	printf("\n\treceived signal %d\n", info.si_signo);
+	else
+		printf("\n\tTIMEOUT\n");
+
+
+        sigemptyset(&set);
+        sigaddset(&set, SIGALRM);
+        timeout.tv_sec = 3;
+        timeout.tv_nsec = 1;
+        alarm(3);
+        ret = sigtimedwait(&set, &info,&timeout); 
+        if(ret > 0)
+                printf("\n\treceived signal %d\n", info.si_signo);
+        else
+                printf("\n\tTIMEOUT\n");
 
 	sigemptyset(&set);
 	sigaddset(&set, SIGALRM);
