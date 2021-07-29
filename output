@@ -1,30 +1,34 @@
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ ./test 
 
-	Registering SIGINT handler
+	Registering handler
 
-	Registered SIGINT handler
-^C
-	signal handler SIGINT::signal = 2
+	Registered handler
 
-	signal handler SIGINT::exit
+	signal handler::signal = 14
+
+	signal handler::exit
 	
-	Blocking SIGINT
-	SIGINT blocked
+	Blocking SIGALRM
+
+	SIGALRM blocked
 
 	wating for signal
-^C
-	 pending signal no = 2
 
-	Unblocking SIGINT
-	signal handler SIGINT::signal = 2
+	 pending signal no = 14
 
-	signal handler SIGINT::exit
-	
-	SIGINT unblocked
-^C
-	signal handler SIGINT::signal = 2
+	received signal 14
 
-	signal handler SIGINT::exit
+	received signal 14
+
+	received signal 14
+
+	Unblocking SIGALRM
+
+	SIGALRM unblocked
+
+	signal handler::signal = 14
+
+	signal handler::exit
 	
 chaitanya@chaitanya-HP-Laptop-14-bs0xx:~/work/linking/study-signals$ 
 
