@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <sys/signalfd.h>
 
 void signal_handler(int signal)
 {
@@ -20,12 +21,13 @@ int main(int argvc, char* argv[])
 	sigset_t set;
 	int i = 0;
 	siginfo_t info;
-	struct timespec timeout;
+	struct signalfd_siginfo fdinfo;
+	int sfd = 0;
 	int ret = 0;
 
-	memset(&timeout, 0 , sizeof(timeout));
 	memset(&act, 0, sizeof(act));
 	memset(&info, 0, sizeof(info));
+	memset(&fdinfo, 0, sizeof(fdinfo));
 
 	act.sa_handler = signal_handler;
 	printf("\n\tRegistering handler\n");
@@ -61,33 +63,16 @@ int main(int argvc, char* argv[])
 	
         sigemptyset(&set);
         sigaddset(&set, SIGALRM);
-	timeout.tv_sec = 2;
-	timeout.tv_nsec =30;
-        alarm(3);
-        ret = sigtimedwait(&set, &info,&timeout); 
-	if(ret > 0)
-        	printf("\n\treceived signal %d\n", info.si_signo);
-	else
-		printf("\n\tTIMEOUT\n");
-
-
-        sigemptyset(&set);
-        sigaddset(&set, SIGALRM);
-        timeout.tv_sec = 3;
-        timeout.tv_nsec = 1;
-        alarm(3);
-        ret = sigtimedwait(&set, &info,&timeout); 
-        if(ret > 0)
-                printf("\n\treceived signal %d\n", info.si_signo);
-        else
-                printf("\n\tTIMEOUT\n");
+	sfd = signalfd(-1, &set, 0);
+	alarm(3);
+	read(sfd, &fdinfo, sizeof(fdinfo));     
+        printf("\n\treceived signal through fd %d\n", fdinfo.ssi_signo);
 
 	sigemptyset(&set);
 	sigaddset(&set, SIGALRM);
 	printf("\n\tUnblocking SIGALRM\n");
         sigprocmask(SIG_UNBLOCK, &set, NULL);
         printf("\n\tSIGALRM unblocked\n");
-
 	alarm(3);
         sleep(3);
 
